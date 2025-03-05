@@ -17,7 +17,7 @@ export const FindMovie: React.FC<Props> = ({ addMovie }) => {
   const [searchTitle, setSearchTitle] = useState('');
   const [isNotFound, setIsNotFound] = useState(false);
   const [newMovie, setNewMovie] = useState<Movie | null>(null);
-  const [searchingMovie, setSerchingMovie] = useState(false);
+  const [searchingMovie, setSearchingMovie] = useState(false);
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTitle(event.currentTarget.value);
@@ -28,7 +28,7 @@ export const FindMovie: React.FC<Props> = ({ addMovie }) => {
     const normalizeSearchValue = searchTitle.toLocaleLowerCase();
 
     event.preventDefault();
-    setSerchingMovie(true);
+    setSearchingMovie(true);
 
     getMovie(normalizeSearchValue)
       .then(res => {
@@ -48,7 +48,7 @@ export const FindMovie: React.FC<Props> = ({ addMovie }) => {
           setNewMovie(newMovieObj);
         }
       })
-      .finally(() => setSerchingMovie(false));
+      .finally(() => setSearchingMovie(false));
   }
 
   function onClickAddMovie() {
@@ -57,7 +57,7 @@ export const FindMovie: React.FC<Props> = ({ addMovie }) => {
       setSearchTitle('');
       setIsNotFound(false);
       setNewMovie(null);
-      setSerchingMovie(false);
+      setSearchingMovie(false);
     }
   }
 
